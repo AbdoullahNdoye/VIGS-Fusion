@@ -54,7 +54,7 @@ def generate_launch_description():
                 'w_dist':0.1,
                 'world_frame_id':'map',
                 'pose_estimation_method': 'WarpingMultipleRendering', #'WarpingMultipleRendering', 'WarpingSingleRendering' or 'Full'
-                'viewer': True,  # Set to True to enable the viewer
+                'viewer': False,  # Set to True to enable the viewer
                 'use_sim_time': True,
             }],
             remappings=[

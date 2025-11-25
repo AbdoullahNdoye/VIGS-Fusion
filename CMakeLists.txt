@@ -10,6 +10,7 @@ enable_language("CUDA")
 
 set(CMAKE_CUDA17_STANDARD_COMPILE_OPTION "-std=c++17")
 set(CMAKE_CUDA17_EXTENSION_COMPILE_OPTION "-std=c++17")
+set(CUDA_UTILS_DIR ${PROJECT_SOURCE_DIR}/include/cuda_utils/build)
 
 list(APPEND CMAKE_CUDA_FLAGS "-w")
 
@@ -38,6 +39,7 @@ include_directories(
   ${OpenCV_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
   ${CERES_INCLUDE_DIRS}
+  ${PROJECT_SOURCE_DIR}/include/cuda_utils
 )
 
 add_library(GaussianSplattingSlam SHARED
@@ -64,12 +66,14 @@ target_include_directories(GaussianSplattingSlam
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>
   ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
+  include/cuda_utils/include
 )
 
 target_link_libraries(GaussianSplattingSlam
   ${OpenCV_LIBRARIES}
   ${CUDA_LIBRARIES}
   ${CERES_LIBRARIES}
+  ${CUDA_UTILS_DIR}/libcuda_utils.so
 
 )
 set_target_properties(GaussianSplattingSlam
@@ -106,6 +110,7 @@ target_link_libraries(GaussianSplattingSlamNode
   GaussianSplattingSlam
   ${OpenCV_LIBRARIES}
   ${CERES_LIBRARIES}
+  ${CUDA_UTILS_DIR}/libcuda_utils.so
 )
 
 

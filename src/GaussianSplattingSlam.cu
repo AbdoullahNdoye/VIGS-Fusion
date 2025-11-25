@@ -433,7 +433,7 @@ namespace gaussian_splatting_slam
             cudaEventSynchronize(stop);
             cudaEventElapsedTime(&et, start, stop);
 
-            std::cout << "pose estimation time : " << et << " ms" << std::endl;
+            //std::cout << "pose estimation time : " << et << " ms" << std::endl;
 
             Eigen::Vector3f imu_trans = Eigen::Vector3f(P_cur[0], P_cur[1], P_cur[2]);
             Eigen::Quaternionf imu_rot = Eigen::Quaternionf(P_cur[6], P_cur[3], P_cur[4], P_cur[5]);
